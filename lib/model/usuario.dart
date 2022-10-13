@@ -11,16 +11,16 @@ class Usuario {
 
   static Future<String> valida(String e, String c) async {
     try {
-      final respuesta = await http.Client()
-          .get(Uri.http(
-              '10.0.2.2', '/comidas/public/api/login', {'email': e, 'pass': c}))
-          .timeout(Duration(seconds: 5));
+      final respuesta = await http.Client().get(Uri.http(
+          '10.0.2.2',
+          '/WebSservices-Comida/public/api/login',
+          {'email': e, 'password': c}));
 
       print("RESPUESTA " + respuesta.body);
       return respuesta.body.toString();
     } on Exception catch (e) {
-      print('ERROR: ' + e.toString());
-      return "Error de conexión";
+      //print('ERROR: ' + e.toString());
+      return "{'respuesta': 'Error de conexión'}";
     }
   }
 }

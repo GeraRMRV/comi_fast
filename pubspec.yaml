@@ -1,4 +1,4 @@
-name: comidas_app
+name: comi_fast
 description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
@@ -30,7 +30,8 @@ dependencies:
   flutter:
     sdk: flutter
   http:
-  shared_preferences:
+  shared_preferences: ^2.0.15
+  image_picker: ^0.8.5+3
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -58,6 +59,8 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+  assets:
+    - assets/
 
   # To add assets to your application, add an assets section, like this:
   # assets:

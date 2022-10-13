@@ -2,6 +2,7 @@ import 'dart:ffi';
 
 import 'package:comi_fast/model/db.dart';
 import 'package:comi_fast/model/pedido.dart';
+import 'package:comi_fast/ui/platillos_por_restaurante.dart';
 import 'package:flutter/material.dart';
 
 class Welcome extends StatefulWidget {
@@ -14,7 +15,7 @@ class Welcome extends StatefulWidget {
 }
 
 class _WelcomeState extends State<Welcome> {
-  String? _token = "";
+  Map<String, dynamic> datos = {};
   List<Pedido> _pedidos = [];
   String _filtroSeleccionado = "PEDIDO";
 
@@ -27,7 +28,7 @@ class _WelcomeState extends State<Welcome> {
   }
 
   void recuperaToken() async {
-    _token = await Datos.leeToken();
+    datos = await Datos.leeToken();
     setState(() {});
   }
 
@@ -63,6 +64,43 @@ class _WelcomeState extends State<Welcome> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+      ),
+      drawer: Drawer(
+        child: ListView(
+          children: <Widget>[
+            UserAccountsDrawerHeader(
+              currentAccountPicture: ClipOval(
+                child: Text('G'),
+              ),
+              accountName: Text('Gera MX'),
+              accountEmail: Text('GeraMX@gmail.com'),
+            ),
+            ListTile(
+              leading: Icon(Icons.person),
+              title: Text('Mi perfil'),
+            ),
+            ListTile(
+              leading: Icon(Icons.breakfast_dining_outlined),
+              title: Text('Platillos'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Platillos(datos),
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.car_crash_outlined),
+              title: Text('Repartidores'),
+            ),
+            ListTile(
+              leading: Icon(Icons.logout),
+              title: Text('Cerrar'),
+            )
+          ],
+        ),
       ),
       body: _columnaCentral(),
     );

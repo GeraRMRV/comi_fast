@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -88,15 +89,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: TextButton(
                     style: TextButton.styleFrom(backgroundColor: Colors.blue),
                     onPressed: () async {
-                      String r = await Usuario.valida(_txtController.value.text,
-                          _passController.value.text);
+                      String r = await Usuario.valida(
+                          _txtController.text, _passController.text);
                       var json = jsonDecode(r);
 
                       ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(content: Text(json['respuesta'])));
 
                       if (json['respuesta'] == 'Bienvenido') {
-                        Datos.registraToken(json['token']);
+                        Datos.registraToken(json['token'], json['restaurante']);
                         Navigator.pushReplacement(context,
                             MaterialPageRoute(builder: (context) {
                           return Welcome(title: widget.title);
