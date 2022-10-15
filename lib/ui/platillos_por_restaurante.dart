@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:comi_fast/ui/agregar_platillos.dart';
+import 'package:comi_fast/ui/editar_platillo.dart';
+import 'package:comi_fast/ui/info_platillo.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -15,6 +17,7 @@ class Platillos extends StatefulWidget {
 
 class _PlatillosState extends State<Platillos> {
   get datos => widget.datos;
+  late bool estaDisponible;
   TextEditingController buscar = TextEditingController();
   String filtro = 'nombre';
   Map<String, dynamic> filtrosAvan = {};
@@ -193,9 +196,30 @@ class _PlatillosState extends State<Platillos> {
             item['descripcion'],
           ),
           trailing: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => EditarPlatillo(datos, item),
+                ),
+              ).then(
+                (value) => {
+                  setState(() {
+                    listadoPlatillos = getPlatillos(filtrosAvan);
+                  })
+                },
+              );
+            },
             icon: const Icon(Icons.edit),
           ),
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => InfoPlatillo(datos, item),
+              ),
+            );
+          },
         ),
       );
     }

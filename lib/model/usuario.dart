@@ -15,8 +15,6 @@ class Usuario {
           '10.0.2.2',
           '/WebSservices-Comida/public/api/login',
           {'email': e, 'password': c}));
-
-      print("RESPUESTA " + respuesta.body);
       return respuesta.body.toString();
     } on Exception catch (e) {
       //print('ERROR: ' + e.toString());
