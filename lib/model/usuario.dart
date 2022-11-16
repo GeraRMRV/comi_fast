@@ -12,7 +12,7 @@ class Usuario {
   static Future<String> valida(String e, String c) async {
     try {
       final respuesta = await http.Client().get(Uri.http(
-          '10.0.2.2',
+          '192.168.0.102',
           '/WebSservices-Comida/public/api/login',
           {'email': e, 'password': c}));
       return respuesta.body.toString();

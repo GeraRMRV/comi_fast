@@ -12,7 +12,7 @@ Future<List<Map<String, dynamic>>?> getPedidos(
   try {
     final respuesta = await http.Client().get(
       Uri.http(
-        '10.0.2.2',
+        '192.168.0.102',
         '/pedidos/public/api/pedidos/$id/$status',
         {
           'api_token': apiToken,

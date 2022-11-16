@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:comi_fast/model/db.dart';
 import 'package:comi_fast/model/pedido.dart';
+import 'package:comi_fast/ui/lista_videos.dart';
 import 'package:comi_fast/ui/login.dart';
 import 'package:comi_fast/ui/platillos_por_restaurante.dart';
 import 'package:flutter/material.dart';
@@ -119,6 +120,18 @@ class _WelcomeState extends State<Welcome> {
                     context,
                     MaterialPageRoute(
                       builder: (context) => Platillos(datos),
+                    ),
+                  );
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.movie),
+                title: Text('Videos'),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ListaVideos(datos),
                     ),
                   );
                 },
